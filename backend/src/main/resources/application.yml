@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: self-checkout-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 60000
+
+# Security configurations
+app:
+  jwt:
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970} # 256-bit hex encoded key
+    accessTokenExpirationMs: 86400000 # 24 Hours
+    refreshTokenExpirationMs: 604800000 # 7 Days
+  
+  razorpay:
+    keyId: ${RAZORPAY_KEY_ID:rzp_test_mock_12345}
+    keySecret: ${RAZORPAY_KEY_SECRET:mock_secret_key_67890}
+    webhookSecret: ${RAZORPAY_WEBHOOK_SECRET:mock_webhook_secret}
+
+# Springdoc OpenAPI Swagger Config
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+  show-actuator: true

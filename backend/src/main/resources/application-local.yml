@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:selfcheckout;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+app:
+  phonepe:
+    merchantId: ${PHONEPE_MERCHANT_ID:PGTESTPAYUAT86}
+    saltKey: ${PHONEPE_SALT_KEY:96434309-7796-489d-8924-ab56988a6076}
+    saltIndex: ${PHONEPE_SALT_INDEX:1}
+    apiDomain: ${PHONEPE_API_DOMAIN:https://api-preprod.phonepe.com/apis/pg-sandbox}
+    redirectUrl: ${PHONEPE_REDIRECT_URL:http://localhost:4200/customer/payment-status}

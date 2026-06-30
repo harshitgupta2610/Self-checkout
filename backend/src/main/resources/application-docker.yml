@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:db}:${DB_PORT:5432}/${DB_NAME:selfcheckout}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+app:
+  phonepe:
+    merchantId: ${PHONEPE_MERCHANT_ID:PGTESTPAYUAT86}
+    saltKey: ${PHONEPE_SALT_KEY:96434309-7796-489d-8924-ab56988a6076}
+    saltIndex: ${PHONEPE_SALT_INDEX:1}
+    apiDomain: ${PHONEPE_API_DOMAIN:https://api-preprod.phonepe.com/apis/pg-sandbox}
+    redirectUrl: ${PHONEPE_REDIRECT_URL:http://localhost:80/customer/payment-status}
