@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../config';
 
 export interface StoreDto {
   id: string;
@@ -25,7 +26,7 @@ export interface ProductDto {
 })
 export class CatalogService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.apiUrl;
 
   getStoreSession(qrIdentifier: string): Observable<StoreDto> {
     return this.http.get<StoreDto>(`${this.apiUrl}/stores/session/${qrIdentifier}`);

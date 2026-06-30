@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../config';
 import { StoreDto, ProductDto } from './catalog.service';
 import { OrderDto } from './payment.service';
 
@@ -47,7 +48,7 @@ export interface Coupon {
 })
 export class AdminService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/admin';
+  private apiUrl = environment.apiUrl + '/admin';
 
   getDashboardData(): Observable<DashboardData> {
     return this.http.get<DashboardData>(`${this.apiUrl}/dashboard`);

@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../config';
 
 export interface CartItemDto {
   productId: string;
@@ -32,7 +33,7 @@ export interface ShoppingCart {
 })
 export class CartService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/cart';
+  private apiUrl = environment.apiUrl + '/cart';
   
   private cartSubject = new BehaviorSubject<ShoppingCart | null>(null);
   cart$ = this.cartSubject.asObservable();

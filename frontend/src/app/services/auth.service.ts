@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../config';
 
 export interface JwtResponse {
   token: string;
@@ -21,7 +22,7 @@ export interface TokenRefreshResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = environment.apiUrl + '/auth';
   private redirectUrl: string | null = null;
 
   login(usernameOrEmail: string, password: String): Observable<JwtResponse> {

@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../config';
 
 export interface PaymentInitResponse {
   orderNumber: string;
@@ -49,7 +50,7 @@ export interface OrderDto {
 })
 export class PaymentService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/orders';
+  private apiUrl = environment.apiUrl + '/orders';
 
   checkout(couponCode?: string | null): Observable<PaymentInitResponse> {
     return this.http.post<PaymentInitResponse>(`${this.apiUrl}/checkout`, { couponCode });

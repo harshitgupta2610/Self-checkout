@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../config';
 import { OrderItemDto } from './payment.service';
 
 export interface VerificationResponse {
@@ -20,7 +21,7 @@ export interface VerificationResponse {
 })
 export class GuardService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/guard';
+  private apiUrl = environment.apiUrl + '/guard';
 
   verifyReceipt(token: string, storeId?: string | null): Observable<VerificationResponse> {
     let params = new HttpParams().set('token', token);
