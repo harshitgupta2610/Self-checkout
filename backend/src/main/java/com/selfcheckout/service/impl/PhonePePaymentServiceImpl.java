@@ -73,7 +73,7 @@ public class PhonePePaymentServiceImpl implements PaymentGatewayService {
             payPayload.put("amount", amountInPaise);
             payPayload.put("redirectUrl", redirectUrl + "?orderNumber=" + orderNumber);
             payPayload.put("redirectMode", "REDIRECT");
-            payPayload.put("paymentExpiry", 300); // 5 minutes payment window
+            payPayload.put("expireAfter", 300); // 5 minutes payment window
             
             JSONObject paymentInstrument = new JSONObject();
             paymentInstrument.put("type", "PAY_PAGE");
