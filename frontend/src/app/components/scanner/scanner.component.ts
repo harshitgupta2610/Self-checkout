@@ -112,18 +112,13 @@ import { CartService } from '../../services/cart.service';
         <div class="manual-form">
           <mat-form-field appearance="fill" class="manual-input">
             <mat-label>Enter Barcode (EAN-13)</mat-label>
-            <input matInput [(ngModel)]="manualBarcode" placeholder="e.g. 8901030752185" (keyup.enter)="simulateScan()">
+            <input matInput [(ngModel)]="manualBarcode" placeholder="Enter barcode number" (keyup.enter)="simulateScan()">
             <mat-icon matSuffix>edit</mat-icon>
           </mat-form-field>
           <button class="accent-button lookup-btn" (click)="simulateScan()" [disabled]="!manualBarcode || lookingUp">
             <mat-icon *ngIf="!lookingUp">search</mat-icon>
             <mat-spinner diameter="18" color="accent" *ngIf="lookingUp"></mat-spinner>
           </button>
-        </div>
-        
-        <div class="manual-hints">
-          <span class="hint-lbl">Test barcode:</span>
-          <span class="hint-code" (click)="manualBarcode='8901030752185'">8901030752185</span>
         </div>
 
         <div class="scanner-error" *ngIf="scannerError">

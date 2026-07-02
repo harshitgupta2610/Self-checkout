@@ -37,9 +37,8 @@ import { AuthService } from '../../services/auth.service';
         <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="session-form">
           <mat-form-field appearance="fill">
             <mat-label>Store QR Identifier</mat-label>
-            <input matInput formControlName="qrIdentifier" placeholder="e.g. BLR_INDIRANAGAR_01" required>
+            <input matInput formControlName="qrIdentifier" placeholder="Enter Store ID" required>
             <mat-icon matSuffix>storefront</mat-icon>
-            <mat-hint>For testing, enter: BLR_INDIRANAGAR_01</mat-hint>
             <mat-error *ngIf="sessionForm.get('qrIdentifier')?.hasError('required')">
               Store identifier code is required
             </mat-error>
@@ -55,13 +54,6 @@ import { AuthService } from '../../services/auth.service';
             <span *ngIf="!loading">Enter Shopping Mode</span>
           </button>
         </form>
-
-        <div class="demo-stores-hints" *ngIf="!loading">
-          <span class="hint-title">Active Demo Branches:</span>
-          <div class="hint-tag" (click)="setMockStore('BLR_INDIRANAGAR_01')">
-            <mat-icon>tag</mat-icon> Indiranagar (BLR_INDIRANAGAR_01)
-          </div>
-        </div>
       </div>
     </div>
   `,
@@ -134,39 +126,6 @@ import { AuthService } from '../../services/auth.service';
       padding: 10px 14px;
       border-radius: 10px;
     }
-
-    .demo-stores-hints {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .hint-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .hint-tag {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--primary);
-      background: rgba(99, 102, 241, 0.05);
-      border: 1px solid rgba(99, 102, 241, 0.12);
-      padding: 8px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      
-      &:hover {
-        background: rgba(99, 102, 241, 0.12);
-        transform: scale(1.02);
-      }
-    }
   `]
 })
 export class StoreSessionComponent implements OnInit {
@@ -190,10 +149,6 @@ export class StoreSessionComponent implements OnInit {
       this.sessionForm.patchValue({ qrIdentifier: qrParam });
       this.validateStoreAndEnter(qrParam);
     }
-  }
-
-  setMockStore(code: string) {
-    this.sessionForm.patchValue({ qrIdentifier: code });
   }
 
   onSubmit() {

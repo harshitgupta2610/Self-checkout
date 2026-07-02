@@ -81,7 +81,7 @@ import { PaymentService, PaymentInitResponse } from '../../services/payment.serv
         <div class="coupon-form" *ngIf="!cart.appliedCouponCode">
           <mat-form-field appearance="fill" class="coupon-input">
             <mat-label>Coupon Code</mat-label>
-            <input matInput [(ngModel)]="couponCode" placeholder="Try SUPER20" (keyup.enter)="applyCoupon()">
+            <input matInput [(ngModel)]="couponCode" placeholder="Enter coupon code" (keyup.enter)="applyCoupon()">
             <mat-icon matSuffix>local_activity</mat-icon>
           </mat-form-field>
           <button class="accent-button apply-btn" (click)="applyCoupon()" [disabled]="!couponCode || applyingCoupon">
